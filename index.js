@@ -1,8 +1,9 @@
 const http = require("http");
-const dataControl = (req, res) => {
-  res.write("<h1>Hello World</h1>");
-  res.end();
-};
-const server = http.createServer(dataControl);
-server.listen(3000);
-console.log("Server is running on port 3000");
+const data = require("./data");
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(JSON.stringify(data));
+    res.end();
+  })
+  .listen(3000);
