@@ -1,9 +1,11 @@
-const http = require("http");
-const data = require("./data");
-http
-  .createServer((req, res) => {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.write(JSON.stringify(data));
-    res.end();
-  })
-  .listen(3000);
+const express = require("express");
+const app = express();
+app.get("/", (request, response) => {
+  response.send("Hello World");
+});
+app.get("/users", (request, response) => {
+  response.send("Hello World User");
+});
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
