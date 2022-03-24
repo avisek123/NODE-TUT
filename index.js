@@ -15,7 +15,7 @@ route.get("/", myLogger, (request, response) => {
 app.get("/users/:userName", (request, response, next) => {
   // response.send(`Hello ${request.params.userName}`);
   if (request?.params?.userName === "Avisek") {
-    response.send(`Hello ${request.params.userName}`);
+    response.send(`Hello ${request.query.userName}`);
   } else {
     response.send("Invalid User");
   }
