@@ -10,7 +10,7 @@ app.get("/users/:Id?", (request, response) => {
     response.status(200).send(`User`);
   }
 });
-app.get("/flights/:from?-:to?", (request, response) => {
+app.get("/flights/:from?.:to?", (request, response) => {
   response
     .status(200)
     .send(`Search fro flights ${request.params.from}-${request.params.to}`);
