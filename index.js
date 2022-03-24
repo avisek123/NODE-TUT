@@ -1,6 +1,7 @@
 const express = require("express");
 const my = require("./my-middleware.js");
 const route = express.Router();
+route.use(my);
 const app = express();
 const myLogger = (req, res, next) => {
   console.log("Middleware working");
