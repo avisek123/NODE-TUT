@@ -1,20 +1,29 @@
 const express = require("express");
+const my = require("./my-middleware.js");
+
 const app = express();
-app.get("/", (request, response) => {
+const myLogger = (req, res, next) => {
+  console.log("Middleware working");
+  next();
+};
+// Router level middleware
+app.get("/", myLogger, (request, response) => {
   response.send("Hello World");
 });
-app.get("/users/:Id?", (request, response) => {
-  if (request.params.Id) {
-    response.status(200).send(`User ${request.params.Id}`);
+
+app.get("/users/:userName", (request, response, next) => {
+  // response.send(`Hello ${request.params.userName}`);
+  if (request?.params?.userName === "Avisek") {
+    response.send(`Hello ${request.params.userName}`);
   } else {
-    response.status(200).send(`User`);
+    response.send("Invalid User");
   }
+  next();
+  // we use next() to pass the control to the next middleware
 });
-app.get("/flights/:from?.:to?", (request, response) => {
-  response
-    .status(200)
-    .send(`Search fro flights ${request.params.from}-${request.params.to}`);
-});
+
+// app.use(myLogger); // Application level middleware
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
