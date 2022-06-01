@@ -3,7 +3,7 @@ const app = express();
 app.get("/", (request, response) => {
   response.send("Hello World");
 });
-app.get("/home", (request, response) => {
+app.get("/home/:id?", (request, response) => {
   response.send("<h1>Hello World</h1>");
 });
 app.listen(3000, () => {
