@@ -8,7 +8,7 @@ app.use(myLogger); // middleware
 app.get("/", (request, response) => {
   response.send("Hello World");
 });
-app.get("/user", (request, response) => {
+app.get("/user", myLogger, (request, response) => {
   response.send("Hello World");
 });
 
