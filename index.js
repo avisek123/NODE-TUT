@@ -42,7 +42,9 @@ const fruitObjectOne = new FruitModel({
 // read documents
 const getFruits = async () => {
   try {
-    const result = await FruitModel.find();
+    const result = await FruitModel.find({
+      name: "Mango",
+    });
     console.log("result", result);
   } catch (error) {
     console.log(error);
