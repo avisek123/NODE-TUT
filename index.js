@@ -14,6 +14,7 @@ const dbConnect = () => {
       console.log(err);
     });
 };
+// A schema  define the structure of the data in the db
 const fruitSchema = new mongoose.Schema({
   name: String,
   price: Number,
