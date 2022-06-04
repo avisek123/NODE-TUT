@@ -32,13 +32,23 @@ const fruitObjectOne = new FruitModel({
   quantity: 10,
 });
 // insert multiple documents
-FruitModel.insertMany([fruitObject, fruitObjectOne], (err, docs) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(docs);
+// FruitModel.insertMany([fruitObject, fruitObjectOne], (err, docs) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(docs);
+//   }
+// });
+// read documents
+const getFruits = async () => {
+  try {
+    const result = await FruitModel.find();
+    console.log("result", result);
+  } catch (error) {
+    console.log(error);
   }
-});
+};
+getFruits();
 app.listen(3000, () => {
   dbConnect();
   console.log("Server is running on port 3000");
