@@ -26,15 +26,19 @@ const fruitObject = new FruitModel({
   price: 100,
   quantity: 10,
 });
-fruitObject
-  .save()
-  .then(() => {
-    console.log("saved");
-  })
-  .catch((err) => {
+const fruitObjectOne = new FruitModel({
+  name: "Banana",
+  price: 100,
+  quantity: 10,
+});
+// insert multiple documents
+FruitModel.insertMany([fruitObject, fruitObjectOne], (err, docs) => {
+  if (err) {
     console.log(err);
-  });
-
+  } else {
+    console.log(docs);
+  }
+});
 app.listen(3000, () => {
   dbConnect();
   console.log("Server is running on port 3000");
