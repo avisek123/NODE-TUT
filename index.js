@@ -40,17 +40,31 @@ const fruitObjectOne = new FruitModel({
 //   }
 // });
 // read documents
-const getFruits = async () => {
+// const getFruits = async () => {
+//   try {
+//     const result = await FruitModel.find({
+//       name: "Mango",
+//     });
+//     console.log("result", result);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// update the documents
+const updateFruit = async () => {
   try {
-    const result = await FruitModel.find({
-      name: "Mango",
-    });
+    const result = await FruitModel.updateOne(
+      { name: "Apple" },
+      { $set: { price: 200 } }
+    );
     console.log("result", result);
   } catch (error) {
     console.log(error);
   }
 };
-getFruits();
+updateFruit();
+
+// getFruits();
 app.listen(3000, () => {
   dbConnect();
   console.log("Server is running on port 3000");
