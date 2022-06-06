@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const fruitDB = require("./models/Fruits");
 const app = express();
+const fruitModel = mongoose.model("Fruits", fruitDB);
 const dbConnect = () => {
   mongoose
     .connect(
@@ -14,65 +16,6 @@ const dbConnect = () => {
       console.log(err);
     });
 };
-// A schema  define the structure of the data in the db
-const fruitSchema = new mongoose.Schema({
-  name: String,
-  price: Number,
-  quantity: Number,
-});
-const FruitModel = mongoose.model("FruitDB", fruitSchema);
-const fruitObject = new FruitModel({
-  name: "Apple",
-  price: 100,
-  quantity: 10,
-});
-const fruitObjectOne = new FruitModel({
-  name: "Banana",
-  price: 100,
-  quantity: 10,
-});
-// insert multiple documents
-// FruitModel.insertMany([fruitObject, fruitObjectOne], (err, docs) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log(docs);
-//   }
-// });
-// read documents
-const getFruits = async () => {
-  try {
-    const result = await FruitModel.find();
-    console.log("result", result);
-  } catch (error) {
-    console.log(error);
-  }
-};
-// getFruits();
-// update the documents
-const updateFruit = async () => {
-  try {
-    const result = await FruitModel.updateOne(
-      { name: "Apple" },
-      { $set: { price: 200 } }
-    );
-    console.log("result", result);
-  } catch (error) {
-    console.log(error);
-  }
-};
-// updateFruit();
-
-// delete the documents
-const deleteFruit = async () => {
-  try {
-    const result = await FruitModel.deleteMany();
-    console.log("result", result);
-  } catch (error) {
-    console.log(error);
-  }
-};
-// deleteFruit();
 
 app.listen(3000, () => {
   dbConnect();
