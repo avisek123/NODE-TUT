@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const fruitDB = require("./models/Fruits");
 const app = express();
-const fruitModel = mongoose.model("Fruits", fruitDB);
+app.use(express.json());
+// const fruitModel = mongoose.model("Fruits", fruitDB);
 const dbConnect = () => {
   mongoose
     .connect(
@@ -16,6 +17,25 @@ const dbConnect = () => {
       console.log(err);
     });
 };
+// insert data
+app.get("/", async (req, res) => {
+  try {
+    // const insertData = await fruitDB.create(req.body);
+    // res.json({ data: insertData });
+    res.json({ data: "hello" });
+  } catch (error) {
+    res.status(4000).json({ error });
+  }
+});
+// const insertData = () => {
+//   const data = new fruitDB({
+//     name: "Apple",
+//     price: 10,
+//     Quantity: 10,
+//   });
+//   data.save();
+// };
+// insertData();
 
 app.listen(3000, () => {
   dbConnect();
