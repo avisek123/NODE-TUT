@@ -5,17 +5,14 @@ const studentsDB = require("./models/Students");
 const app = express();
 app.use(express.json());
 
-app.post("/students", (req, res) => {
-  console.log("body ", req.body);
-  const newStudent = new studentsDB(req.body);
-  newStudent
-    .save()
-    .then((student) => {
-      res.status(200).send(student);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+app.post("/students", async (req, res) => {
+  try {
+    const newStudent = new studentsDB(req.body);
+    const result = await newStudent.save();
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(400).send(e);
+  }
 });
 
 app.listen(3000, () => {
