@@ -50,6 +50,25 @@ app.delete("/students/:id", async (req, res) => {
     res.status(400).send(error);
   }
 });
+// update the students by ID
+app.patch("/students/:id", async (req, res) => {
+  try {
+    const student = await studentsDB.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!student) {
+      res.status(404).send("Student not found");
+    } else {
+      res.status(200).send(student);
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
