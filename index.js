@@ -24,10 +24,23 @@ app.get("/students", async (req, res) => {
   }
 });
 // // read individual students data
-app.get("/students/:id", async (req, res) => {
+// app.get("/students/:id", async (req, res) => {
+//   try {
+//     const student = await studentsDB.findById(req.params.id);
+//     res.status(200).send(student);
+//     if (!student) {
+//       res.status(404).send("Student not found");
+//     } else {
+//       res.status(200).send(student);
+//     }
+//   } catch (error) {
+//     res.status(400).send(error);
+//   }
+// });
+// delete a student
+app.delete("/students/:id", async (req, res) => {
   try {
-    const student = await studentsDB.findById(req.params.id);
-    res.status(200).send(student);
+    const student = await studentsDB.findByIdAndDelete(req.params.id);
     if (!student) {
       res.status(404).send("Student not found");
     } else {
