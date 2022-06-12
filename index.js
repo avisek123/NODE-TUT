@@ -14,6 +14,15 @@ app.post("/students", async (req, res) => {
     res.status(400).send(e);
   }
 });
+// read the students data
+app.get("/students", async (req, res) => {
+  try {
+    const students = await studentsDB.find();
+    res.status(200).send(students);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
