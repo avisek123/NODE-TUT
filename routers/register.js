@@ -10,4 +10,21 @@ router.post("/register", async (req, res) => {
     res.status(400).send(e);
   }
 });
+router.post("/login", async (req, res) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const student = await Register.findOne({
+      email: email,
+      password: password,
+    });
+    if (!student) {
+      res.status(404).send("Student not found");
+    } else {
+      res.status(200).send(student);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
