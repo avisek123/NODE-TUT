@@ -4,7 +4,7 @@
   "description": "\"Node js Tutorial\"",
   "main": "index.js",
   "scripts": {
-   "start":"node index.js"
+    "start": "node index.js"
   },
   "keywords": [
     "avisek"
@@ -12,6 +12,7 @@
   "author": "avisek",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "chalk": "^5.0.1",
     "colors": "^1.4.0",
     "express": "^4.17.3",
