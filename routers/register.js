@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 const Register = require("../models/register");
 router.post("/register", async (req, res) => {
   try {
@@ -18,8 +19,9 @@ router.post("/login", async (req, res) => {
       email: email,
       password: password,
     });
-    if (!student) {
-      res.status(404).send("Student not found");
+    const isMatch = await bcrypt.compare(password, student.password);
+    if (!isMatch) {
+      res.status(404).send("Invalid email or password");
     } else {
       res.status(200).send(student);
     }
